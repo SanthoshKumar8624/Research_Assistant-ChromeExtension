@@ -70,12 +70,23 @@ public class ResearchService {
     private String buildPrompt(ResearchRequest request) {
         StringBuilder prompt = new StringBuilder();
         switch (request.getOperation()) {
+
             case "summarize":
-                prompt.append(" Make sure to summarize and provide few points with spaces. :\n\n");
+                prompt.append("Provide a clear and concise summary of the following text:\n\n");
                 break;
-            case "suggest":
-                prompt.append("Based on the following content: suggest related topics and further reading. Format the response with clear headings and bullet points:\n\n");
+
+            case "explain":
+                prompt.append("Explain the following content in simple terms:\n\n");
                 break;
+
+            case "simplify":
+                prompt.append("Simplify the following content so a beginner can understand:\n\n");
+                break;
+
+            case "questions":
+                prompt.append("Generate 5 questions based on the following content:\n\n");
+                break;
+
             default:
                 throw new IllegalArgumentException("Unknown Operation: " + request.getOperation());
         }

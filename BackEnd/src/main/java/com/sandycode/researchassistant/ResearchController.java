@@ -8,14 +8,22 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/research")
 @CrossOrigin(origins = "*")//Allows all endpoints from frontend to access this controller
 @AllArgsConstructor
-public class ResearchController
-{
+public class ResearchController {
+
     private ResearchService researchService;
+    private RateLimitConfig rateLimitConfig;
 
     @PostMapping("/process")
-    public ResponseEntity<String>processContent(@RequestBody ResearchRequest request)
-    {
+    public ResponseEntity<String> processContent(@RequestBody ResearchRequest request) {
+
+        if (!rateLimitConfig.tryConsume()) {
+            return ResponseEntity
+                    .status(429)
+                    .body("Too many requests. Please wait a moment.");
+        }
+
         String result = researchService.processContent(request);
+
         return ResponseEntity.ok(result);
     }
 }

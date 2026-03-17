@@ -38,20 +38,32 @@ chrome.runtime.onInstalled.addListener(() => {
 
 /* Handle context menu clicks */
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
+chrome.contextMenus.onClicked.addListener(async (info, tab) => {
 
     if (!tab || !tab.id) return;
 
-    if (
-        info.menuItemId === "summarize" ||
-        info.menuItemId === "explain" ||
-        info.menuItemId === "simplify" ||
-        info.menuItemId === "questions"
-    ) {
+    const operationMap = {
+        summarize: "summarize",
+        explain: "explain",
+        simplify: "simplify",
+        questions: "questions"
+    };
 
-        chrome.sidePanel.open({
+    const operation = operationMap[info.menuItemId];
+
+    if (operation) {
+
+        await chrome.sidePanel.open({
             tabId: tab.id
         });
+
+        // wait for sidepanel to load
+        setTimeout(() => {
+            chrome.runtime.sendMessage({
+                action: "processText",
+                operation: operation
+            });
+        }, 300);
 
     }
 

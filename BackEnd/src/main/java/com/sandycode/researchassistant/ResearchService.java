@@ -72,19 +72,19 @@ public class ResearchService {
         switch (request.getOperation()) {
 
             case "summarize":
-                prompt.append("Provide a clear and concise summary of the following text:\n\n");
+                prompt.append("Provide a clear summary in about 80–100 words of the following text:\n\n");
                 break;
 
             case "explain":
-                prompt.append("Explain the following content in simple terms:\n\n");
+                prompt.append("Explain the following content in simple terms using about 80–100 words:\n\n");
                 break;
 
             case "simplify":
-                prompt.append("Simplify the following content so a beginner can understand:\n\n");
+                prompt.append("Simplify the following content so a beginner can understand it in about 80–100 words:\n\n");
                 break;
 
             case "questions":
-                prompt.append("Generate 5 questions based on the following content:\n\n");
+                prompt.append("Generate 5 short questions based on the following content:\n\n");
                 break;
 
             default:

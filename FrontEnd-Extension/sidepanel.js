@@ -14,6 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('saveNotesBtn').addEventListener('click', saveNotes);
 });
 
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+
+    if (message.action === "processText") {
+        processText(message.operation);
+    }
+
+});
+
 async function processText(operation) {
 
     const loading = document.getElementById('loading');

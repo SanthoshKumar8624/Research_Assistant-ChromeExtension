@@ -13,6 +13,11 @@ public class ResearchController {
     private ResearchService researchService;
     private RateLimitConfig rateLimitConfig;
 
+    @GetMapping("/")
+    public String home() {
+        return "Research Assistant API is running successfully ;)";
+    }
+
     @PostMapping("/process")
     public ResponseEntity<String> processContent(@RequestBody ResearchRequest request) {
 

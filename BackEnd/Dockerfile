@@ -4,11 +4,11 @@ WORKDIR /app
 
 COPY . .
 
-# Give permission to mvnw in ROOT
+# give permission to mvnw (root level)
 RUN chmod +x mvnw
 
-# Build using BackEnd pom.xml
-RUN ./mvnw -f BackEnd/pom.xml clean package -DskipTests
+# build from ROOT (NOT BackEnd)
+RUN ./mvnw clean package -DskipTests
 
-# Run jar from BackEnd target
-CMD ["sh", "-c", "java -jar BackEnd/target/*.jar"]
+# run jar
+CMD ["sh", "-c", "java -jar target/*.jar"]

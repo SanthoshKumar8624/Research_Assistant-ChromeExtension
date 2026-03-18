@@ -42,7 +42,7 @@ async function processText(operation) {
             return;
         }
 
-        const response = await fetch('http://localhost:8081/api/research/process', {
+        const response = await fetch('https://researchassistant-chromeextension.onrender.com/api/research/process', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

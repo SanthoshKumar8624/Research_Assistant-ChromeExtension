@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/research")
-@CrossOrigin(origins = "*")//Allows all endpoints from frontend to access this controller
+@CrossOrigin(origins = "chrome-extension://ekjbogdopclpngafjlihedmnhjekonem")// Allow requests from the Chrome extension before it was *
 @AllArgsConstructor
 public class ResearchController {
 
